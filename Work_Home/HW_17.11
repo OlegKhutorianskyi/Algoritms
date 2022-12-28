@@ -1,0 +1,28 @@
+
+//выполнил только первое задание т.к. не понял тему
+
+
+
+
+Даны два целых числа x и n, напишите функцию для вычисления x^n
+     решение 1 - рекурсивно O(n)
+     решение 2 - улучшить решение 1 до O(lon n)
+
+console.log(power(2, 1));
+console.log(power(2, 4));
+console.log(power(2, 6));
+console.log(power(2, 10));
+
+function power(x, n) {
+
+if(n == 0){
+return 1;
+}
+let result = x;
+for (let i = 1; i < n; i++){
+
+result *= x;
+}
+return result;
+}
+
