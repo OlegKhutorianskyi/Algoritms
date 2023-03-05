@@ -1,0 +1,27 @@
+function hanoiTower(discs, from, to, via) {
+    if (discs === 1) {
+      console.log(`Move disk 1 from ${from} to ${to}`);
+    } else {
+      hanoiTower(discs - 1, from, via, to);
+      console.log(`Move disk ${discs} from ${from} to ${to}`);
+      hanoiTower(discs - 1, via, to, from);
+    }
+  }
+  
+  //Вызов функиии:
+ 
+  hanoiTower(3, '1', '3', '2');
+  
+  
+//функция hanoiTower принимает четыре параметра: 
+//количество дисков discs, стержень, на котором находятся диски в начале игры from, 
+//стержень, на который нужно переместить все диски to, и вспомогательный стержень via.
+
+//Результат работы данной функции:
+//Move disk 1 from 1 to 3
+//Move disk 2 from 1 to 2
+//Move disk 1 from 3 to 2
+//Move disk 3 from 1 to 3
+//Move disk 1 from 2 to 1
+//Move disk 2 from 2 to 3
+//Move disk 1 from 1 to 3
