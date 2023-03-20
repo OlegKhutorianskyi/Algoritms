@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr;
+        let size;
+
+        function createArray(arrayLength) {
+            arr = Array(arrayLength);
+            size = 0;
+        }
+
+        function resizeArray() {
+            let len = arr.length;
+            if (len === 0) len = 1;
+            else len *= 2;
+            let temp = Array(len);
+            for (let i = 0; i < len; i++) {
+                temp[i] = arr[i];
+            }
+            arr = temp;
+        }
+
+        function append(item) {
+            if (arr.length <= size) {
+                resizeArray();
+            }
+            arr[size] = item;
+            size++;
+        }
+
+        function remove() {
+            if (size === 0) {
+                return;
+            }
+            size--;
+            arr[size] = undefined;
+        }
+
+        function removeAt(index) {
+            if (index < 0 || index >= size) {
+                return;
+            }
+            for (let i = index; i < size - 1; i++) {
+                arr[i] = arr[i + 1];
+            }
+            size--;
+            arr[size] = undefined;
+        }
+
+        function growSize() {
+            resizeArray();
+        }
+
+        function set(index, data) {
+            if (index < 0 || index >= size) {
+                return;
+            }
+            arr[index] = data;
+        }
+
+        function clean() {
+            for (let i = 0; i < size; i++) {
+                arr[i] = undefined;
+            }
+            size = 0;
+        }
+
+        function contains(data) {
+            for (let i = 0; i < size; i++) {
+                if (arr[i] === data) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function isEmpty() {
+            return size === 0;
+        }
+
+        createArray(0);
+        for (let i = 0; i < 2; i++) {
+            append(1);
+        }
+
+        console.log("Array before removing elements:");
+        console.log(arr);
+
+        remove();
+        console.log("Array after removing an element:");
+        console.log(arr);
+
+        removeAt(0);
+        console.log("Array after removing an element at index 0:");
+        console.log(arr);
+
+        console.log(`Array size before growing: ${arr.length}`);
+        growSize();
+        console.log(`Array size after growing: ${arr.length}`);
+
+        set(0, 2);
+        console.log("Array after setting the element at index 0 to 2:");
+        console.log(arr);
+
+        console.log(`Array before cleaning: ${arr}`);
+        clean();
+        console.log("Array after cleaning:");
+        console.log(arr);
+
+        console.log(`Array contains 2: ${contains(2)}`);
+        console.log(`Array contains 1: ${contains(1)}`);
+
+        console.log(`Array is empty: ${isEmpty()}`);
+
+    </script>
+</body>
+
+</html>
