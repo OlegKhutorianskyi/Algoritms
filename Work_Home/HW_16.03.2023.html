@@ -1,0 +1,73 @@
+<!-- <script>
+  let storage = Array(10);
+  function enqueue(item) {
+  }
+  function dequeue(item) {
+    t = 0;
+    return t;
+  }
+  function isEmpty() {
+    return;
+  }
+  function maxItemInQueue() {
+    return;
+  }
+  function peek() {
+    return;
+  }
+</script> -->
+
+
+
+
+<!-- ДЗ -->
+
+<script>
+  let storage = Array(10);
+  let front = -1;
+  let rear = -1;
+
+  function enqueue(item) {
+    if (rear === storage.length - 1) {
+      console.log("Queue Overflow");
+      return;
+    }
+    if (front === -1) front = 0;
+    rear++;
+    storage[rear] = item;
+    console.log(`${item} enqueued to queue`);
+  }
+
+  function dequeue() {
+    if (front === -1 || front > rear) {
+      console.log("Queue Underflow");
+      return;
+    }
+    let item = storage[front];
+    front++;
+    console.log(`${item} dequeued from queue`);
+    return item;
+  }
+
+  function isEmpty() {
+    return front === -1 || front > rear;
+  }
+
+  function maxItemInQueue() {
+    let max = -Infinity;
+    for (let i = front; i <= rear; i++) {
+      if (storage[i] > max) {
+        max = storage[i];
+      }
+    }
+    return max;
+  }
+
+  function peek() {
+    if (front === -1 || front > rear) {
+      console.log("Queue is Empty");
+      return;
+    }
+    return storage[front];
+  }
+</script>
