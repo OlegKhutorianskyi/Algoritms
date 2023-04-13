@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Люди, необходимые для создания родословной
+
+const alex = new People('Alex');
+const alice = new People('Alice');
+const bob = new People('Bob');
+const barbara = new People('Barbara');
+const carl = new People('Carl');
+const cathy = new People('Cathy');
+const david = new People('David');
+const diana = new People('Diana');
+
+alex.mother = alice;
+alex.father = bob;
+
+bob.mother = barbara;
+bob.father = carl;
+
+david.mother = cathy;
+david.father = carl;
+
+diana.mother = cathy;
+diana.father = bob;
+
+function printPedigree(person, prefix = '') {
+console.log(`${prefix}${person.name}`);
+if (person.mother) {
+printPedigree(person.mother, `${prefix}` );
+}
+if (person.father) {
+printPedigree(person.father, `${prefix}` );
+}
+}
+
+//Функция, которая будет выводить всю родословную начиная с конкретного человека. Например, если хотим вывести всю родословную начиная с Дианы, мы можем написать такую функцию:
+
+// Теперь мы можем вызвать эту функцию и передать ей Диану:
+
+printPedigree(diana);
+
+// Это выведет следующее:
+
+// Diana
+// Cathy
+// David
+// Carl
+// Bob
+// Barbara
+// Carl
+
+// То есть мы получили всю родословную, начиная с Дианы
+    </script>
+</body>
+</html>
