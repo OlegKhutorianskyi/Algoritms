@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Чтобы удалить узел из дерева, нужно выполнить следующие шаги:
+
+        Найти узел, который нужно удалить.
+        Если узел не имеет потомков, просто удалите его из дерева.
+        Если узел имеет одного потомка, удалите узел и замените его потомком в родительском узле.
+        Если узел имеет двух потомков, найдите его преемника (т. е. самый левый узел в правом поддереве), замените узел его преемником и удалите преемника из правого поддерева.
+ -->
+    <script>
+        removeNode(value);
+        {
+            const remove = (node, value) => {
+                if (!node) return null;
+
+                if (value === node.value) {
+                    // Case 1: узел без потомков
+                    if (!node.left && !node.right) {
+                        return null;
+                    }
+
+                    // Case 2: узел с одним потомком
+                    if (!node.left) return node.right;
+                    if (!node.right) return node.left;
+
+                    // Case 3: узел с двумя потомками
+                    let tempNode = node.right;
+                    while (tempNode.left) {
+                        tempNode = tempNode.left;
+                    }
+                    node.value = tempNode.value;
+                    node.right = remove(node.right, tempNode.value);
+                    return node;
+                } else if (value < node.value) {
+                    node.left = remove(node.left, value);
+                    return node;
+                } else {
+                    node.right = remove(node.right, value);
+                    return node;
+                }
+            }
+
+            this.root = remove(this.root, value);
+        }
+        </script>
+
+ <!-- Здесь используется рекурсивный подход для удаления узла из дерева. В зависимости от того, сколько потомков имеет узел, выполняются различные действия. В конечном итоге метод возвращает новый корень дерева. -->
+ 
+</body>
+
+</html>
