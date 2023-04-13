@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        Для решения этой задачи можно использовать следующий алгоритм:<br/>
+        <br/>
+        Получить вызов на этаже floor.<br/>
+        Вычислить расстояние от каждого лифта до этажа floor.<br/>
+        Выбрать лифт, который находится ближе всего к этажу floor.<br/>
+        Отправить выбранный лифт на этаж floor.<br/>
+    </p>
+    <script>
+        class Elevator {
+            constructor(name, currentFloor) {
+                this.name = name;
+                this.currentFloor = currentFloor;
+            }
+
+            moveTo(floor) {
+                console.log(`Elevator ${this.name} is moving from floor ${this.currentFloor} to floor ${floor}`);
+                this.currentFloor = floor;
+                console.log(`Elevator ${this.name} has arrived at floor ${floor}`);
+            }
+
+            getDistanceTo(floor) {
+                return Math.abs(floor - this.currentFloor);
+            }
+            }
+
+            const elevators = [
+            new Elevator('A', 0),
+            new Elevator('B', 8)
+            ];
+
+            function callElevator(floor) {
+            let minDistance = Infinity;
+            let selectedElevator = null;
+
+            elevators.forEach(elevator => {
+                const distance = elevator.getDistanceTo(floor);
+                if (distance < minDistance) {
+                minDistance = distance;
+                selectedElevator = elevator;
+                }
+            });
+
+            console.log(`Selected elevator ${selectedElevator.name} with distance ${minDistance}`);
+            selectedElevator.moveTo(floor);
+            }
+
+            callElevator(1);
+
+    </script>
+</body>
+</html>
