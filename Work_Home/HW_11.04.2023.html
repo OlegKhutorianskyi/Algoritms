@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        class Node {
+            constructor(value) {
+                this.value = value;
+                this.left = null;
+                this.right = null;
+            }
+        }
+
+        class BinaryTree {
+            constructor() {
+                this.root = null;
+            }
+
+            insert(value) {
+                const node = new Node(value);
+
+                if (!this.root) {
+                    this.root = node;
+                } else {
+                    let current = this.root;
+
+                    while (current) {
+                        if (value < current.value) {
+                            if (!current.left) {
+                                current.left = node;
+                                break;
+                            }
+                            current = current.left;
+                        } else {
+                            if (!current.right) {
+                                current.right = node;
+                                break;
+                            }
+                            current = current.right;
+                        }
+                    }
+                }
+            }
+
+            getMaxValue() {
+                let current = this.root;
+                while (current.right) {
+                    current = current.right;
+                }
+                return current.value;
+            }
+
+            getMinValue() {
+                let current = this.root;
+                while (current.left) {
+                    current = current.left;
+                }
+                return current.value;
+            }
+        }
+
+    </script>
+
+    <!-- Метод getMaxValue проходит по правой ветке дерева, пока не достигнет самого правого элемента, который будет содержать максимальное значение. Метод getMinValue проходит по левой ветке дерева, пока не достигнет самого левого элемента, который будет содержать минимальное значение. -->
+</body>
+
+</html>
